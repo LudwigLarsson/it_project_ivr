@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Antiplanner</string>
+    <string name="home">to do</string>
+    <string name="add">add</string>
+    <string name="events">events</string>
+    <string name="user">me</string>
 </resources>

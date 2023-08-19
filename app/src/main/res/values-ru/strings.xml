@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Антипланер</string>
+    <string name="home">дела</string>
+    <string name="add">новое</string>
+    <string name="events">мероприятия</string>
+    <string name="user">я</string>
+</resources>
