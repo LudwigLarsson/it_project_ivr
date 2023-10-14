@@ -3,7 +3,29 @@
     <style name="Base.Theme.Antiplanner" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/dark_green</item>
+        <item name="colorPrimaryDark">@color/dark_green</item>
+
     </style>
 
     <style name="Theme.Antiplanner" parent="Base.Theme.Antiplanner" />
+    <style name="TextAppearance.MyApp.Title.Collapsed" parent="android:TextAppearance">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="lineHeight">32sp</item>
+        <item name="android:textColor">@color/dark_green</item>
+    </style>
+    <style name="TextAppearance.MyApp.Title.Expanded" parent="android:TextAppearance">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="height">37.5sp</item>
+        <item name="android:textColor">@color/dark_green</item>
+    </style>
+    <style name="MySwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/mint</item>
+        <item name="colorSwitchThumbNormal">#C3AFAF</item>
+    </style>
+    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
+        <item name="android:textColorSecondary">@color/dark</item>
+    </style>
 </resources>

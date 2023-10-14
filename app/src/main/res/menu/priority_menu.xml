@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_low"
+        android:title="@string/low_priority"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_normal"
+        android:title="@string/normal_priority"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_high"
+        android:title="@string/high_priority"
+        app:showAsAction="never" />
+</menu>
