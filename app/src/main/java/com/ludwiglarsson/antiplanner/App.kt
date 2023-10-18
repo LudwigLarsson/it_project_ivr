@@ -11,6 +11,7 @@ import com.ludwiglarsson.antiplanner.components.AppComponent
 import com.ludwiglarsson.antiplanner.components.DaggerAppComponent
 import com.ludwiglarsson.antiplanner.data.synchronize.MyWorker
 import com.ludwiglarsson.antiplanner.data.synchronize.MyWorkerFactory
+import com.ludwiglarsson.antiplanner.utils.SharedPreferencesHelper
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -22,6 +23,9 @@ class App : Application(), Configuration.Provider {
 
     @Inject
     lateinit var workerFactory: MyWorkerFactory
+
+    @Inject
+    lateinit var sharedPreferencesHelper: SharedPreferencesHelper
 
     override fun onCreate() {
         super.onCreate()

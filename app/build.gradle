@@ -1,5 +1,9 @@
 plugins {
     id 'com.android.application'
+
+
+
+
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs' version '2.5.0'
     id 'kotlin-kapt'
@@ -13,10 +17,11 @@ android {
 
     defaultConfig {
         applicationId "com.example.antiplanner"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [YANDEX_CLIENT_ID:"f55c59122a7c4ababab567411a508451"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -77,5 +82,5 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.6.0'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.work:work-runtime-ktx:2.8.1'
-
+    implementation "com.yandex.android:authsdk:2.5.1"
 }

@@ -14,9 +14,11 @@ import com.ludwiglarsson.antiplanner.data.alarm.AlarmIntentUtils.getItemId
 import com.ludwiglarsson.antiplanner.data.alarm.DeadlineManager
 import com.ludwiglarsson.antiplanner.fragments.EditFragment
 import com.ludwiglarsson.antiplanner.fragments.EventsFragment
+import com.ludwiglarsson.antiplanner.fragments.LoginFragment
 import com.ludwiglarsson.antiplanner.fragments.MainFragment
 import com.ludwiglarsson.antiplanner.fragments.NewFragment
 import com.ludwiglarsson.antiplanner.fragments.UserFragment
+import com.ludwiglarsson.antiplanner.utils.SharedPreferencesHelper
 import javax.inject.Inject
 
 
@@ -24,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     @Inject
     lateinit var deadlineManager: DeadlineManager
+    @Inject
+    lateinit var sharedPreferencesHelper: SharedPreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +38,19 @@ class MainActivity : AppCompatActivity() {
 //        val navHostFragment = supportFragmentManager
 //            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 //        navController = navHostFragment.navController
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container_view, MainFragment())
-            .addToBackStack(null)
-            .commit()
+        if (sharedPreferencesHelper.getToken() == "no_token") {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container_view, LoginFragment())
+                .addToBackStack(null)
+                .commit()
+        } else {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container_view, MainFragment())
+                .addToBackStack(null)
+                .commit()
+        }
         val navView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
         navView.setOnNavigationItemSelectedListener(
             BottomNavigationView.OnNavigationItemSelectedListener { item ->

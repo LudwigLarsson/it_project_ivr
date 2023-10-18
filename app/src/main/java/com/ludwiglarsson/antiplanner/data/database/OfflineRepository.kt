@@ -28,6 +28,11 @@ class OfflineRepository @Inject constructor(private val todoItemDao: TodoItemDao
             todoItemDao.deleteTodo(id)
         }
     }
+    override suspend fun deleteAllTodos(): Result<Unit> {
+        return databaseCall {
+            todoItemDao.deleteAllTodos()
+        }
+    }
 
     override suspend fun updateTodo(item: TodoItem): Result<Unit> {
         return databaseCall {

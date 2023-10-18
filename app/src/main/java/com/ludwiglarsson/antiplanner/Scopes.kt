@@ -16,6 +16,9 @@ annotation class RepositoryScope
 annotation class MainFragmentScope
 
 @Scope
+annotation class LoginFragmentScope
+
+@Scope
 annotation class NewFragmentScope
 
 @Scope

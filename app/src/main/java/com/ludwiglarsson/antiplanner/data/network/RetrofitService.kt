@@ -12,10 +12,11 @@ import retrofit2.http.Path
 interface RetrofitService {
 
     @GET("list")
-    suspend fun getTodoList(): TodoItemListResponse
+    suspend fun getTodoList(@Header("Authorization") token: String): TodoItemListResponse
 
     @PATCH("list")
     suspend fun updateTodosOnServer(
+        @Header("Authorization") token: String,
         @Header("X-Last-Known-Revision") revision: Int,
         @Body todoItemList: TodoItemListRequest
     ): TodoItemListResponse
@@ -25,12 +26,14 @@ interface RetrofitService {
 
     @POST("list")
     suspend fun addTodo(
+        @Header("Authorization") token: String,
         @Header("X-Last-Known-Revision") revision: Int,
         @Body todoItem: TodoItemRequest
     ): TodoItemResponse
 
     @PUT("list/{id}")
     suspend fun updateTodo(
+        @Header("Authorization") token: String,
         @Header("X-Last-Known-Revision") revision: Int,
         @Path("id") id: String,
         @Body todoItem: TodoItemRequest
@@ -38,7 +41,14 @@ interface RetrofitService {
 
     @DELETE("list/{id}")
     suspend fun deleteTodo(
+        @Header("Authorization") token: String,
         @Header("X-Last-Known-Revision") revision: Int,
         @Path("id") id: String
+    ): TodoItemResponse
+
+    @DELETE("list")
+    suspend fun deleteAllTodos(
+        @Header("Authorization") token: String,
+        @Header("X-Last-Known-Revision") revision: Int
     ): TodoItemResponse
 }

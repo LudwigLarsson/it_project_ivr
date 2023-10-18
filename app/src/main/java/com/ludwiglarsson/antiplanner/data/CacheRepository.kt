@@ -47,6 +47,9 @@ class CacheRepository @Inject constructor(
     override suspend fun getAllTodos(): Result<List<TodoItem>> {
         return readCache { it.getAllTodos() }
     }
+    override suspend fun deleteAllTodos(): Result<Unit> {
+        return writeCache { it.deleteAllTodos() }
+    }
 
     override suspend fun updateAllTodos(updateList: List<TodoItem>): Result<List<TodoItem>> {
         return writeCache { it.updateAllTodos(updateList) }

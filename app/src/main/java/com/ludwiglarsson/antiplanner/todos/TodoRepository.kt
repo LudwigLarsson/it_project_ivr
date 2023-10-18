@@ -8,6 +8,7 @@ interface TodoRepository {
     suspend fun updateTodo(item: TodoItem): Result<Unit>
     suspend fun getTodo(id: String): Result<TodoItem>
     suspend fun getAllTodos(): Result<List<TodoItem>>
+    suspend fun deleteAllTodos(): Result<Unit>
     suspend fun updateAllTodos(updateList: List<TodoItem>): Result<List<TodoItem>>
     fun observeTodos(): Flow<List<TodoItem>>
 

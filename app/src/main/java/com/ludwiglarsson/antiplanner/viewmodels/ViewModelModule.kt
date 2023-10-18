@@ -22,4 +22,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(EditViewModel::class)
     fun bindEditTodoViewModel(viewModel: EditViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
 }

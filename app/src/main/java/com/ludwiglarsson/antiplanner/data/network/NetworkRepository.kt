@@ -9,6 +9,7 @@ import com.ludwiglarsson.antiplanner.data.di.RemoteRevision
 import com.ludwiglarsson.antiplanner.data.synchronize.RevisionHolder
 import com.ludwiglarsson.antiplanner.todos.TodoItem
 import com.ludwiglarsson.antiplanner.todos.TodoRepository
+import com.ludwiglarsson.antiplanner.utils.SharedPreferencesHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -22,6 +23,7 @@ import javax.inject.Inject
 class NetworkRepository @Inject constructor(
     @RemoteRevision private val revision: RevisionHolder,
     private val service: RetrofitService,
+    private val sharedPreferencesHelper: SharedPreferencesHelper,
     context: Context
 ) : TodoRepository {
 
@@ -29,21 +31,28 @@ class NetworkRepository @Inject constructor(
 
     override suspend fun addTodo(item: TodoItem): Result<Unit> {
         return networkCall(action = {
-            val result = service.addTodo(revision.getRevision(), TodoItemRequest(converterRequest(item)))
+            val result = service.addTodo(
+                sharedPreferencesHelper.getTokenForResponse(), revision.getRevision(), TodoItemRequest(converterRequest(item)))
             revision.setRevision(result.revision)
         })
     }
 
     override suspend fun deleteTodo(id: String): Result<Unit> {
         return networkCall(action = {
-            val result = service.deleteTodo(revision.getRevision(), id)
+            val result = service.deleteTodo(sharedPreferencesHelper.getTokenForResponse(), revision.getRevision(), id)
+            revision.setRevision(result.revision)
+        })
+    }
+    override suspend fun deleteAllTodos(): Result<Unit> {
+        return networkCall(action = {
+            val result = service.deleteAllTodos(sharedPreferencesHelper.getTokenForResponse(), revision.getRevision())
             revision.setRevision(result.revision)
         })
     }
 
     override suspend fun updateTodo(item: TodoItem): Result<Unit> {
         return networkCall(action = {
-            val result = service.updateTodo(
+            val result = service.updateTodo(sharedPreferencesHelper.getTokenForResponse(),
                 revision.getRevision(),
                 item.itemID,
                 TodoItemRequest(converterRequest(item))
@@ -63,7 +72,7 @@ class NetworkRepository @Inject constructor(
 
     override suspend fun getAllTodos(): Result<List<TodoItem>> {
         return networkCall(action = {
-            val response = service.getTodoList()
+            val response = service.getTodoList(sharedPreferencesHelper.getTokenForResponse())
             val listTodoItem = response.list.map { pojo: TodoItemPOJO ->
                 converterResponse(pojo)
             }
@@ -75,7 +84,7 @@ class NetworkRepository @Inject constructor(
     override suspend fun updateAllTodos(updateList: List<TodoItem>): Result<List<TodoItem>> {
         return networkCall {
             val listUpdateTodoItem = updateList.map { todo -> converterRequest(todo) }
-            val response = service.updateTodosOnServer(revision.getRevision(), TodoItemListRequest(listUpdateTodoItem))
+            val response = service.updateTodosOnServer(sharedPreferencesHelper.getTokenForResponse(), revision.getRevision(), TodoItemListRequest(listUpdateTodoItem))
             val listTodoItem = response.list.map { pojo: TodoItemPOJO ->
                 converterResponse(pojo)
             }

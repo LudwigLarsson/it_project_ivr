@@ -8,6 +8,7 @@ import com.ludwiglarsson.antiplanner.RepositoryScope
 import com.ludwiglarsson.antiplanner.data.di.DataModule
 import com.ludwiglarsson.antiplanner.data.di.DatabaseModule
 import com.ludwiglarsson.antiplanner.data.di.NetworkModule
+import com.ludwiglarsson.antiplanner.data.di.SharedPreferencesHelperModule
 import com.ludwiglarsson.antiplanner.viewmodels.ViewModelModule
 import com.ludwiglarsson.antiplanner.viewmodels.ViewModelsMap
 import dagger.BindsInstance
@@ -16,7 +17,7 @@ import dagger.Component
 @AppScope
 @MyWorkerScope
 @RepositoryScope
-@Component(modules = [DataModule::class, DatabaseModule::class, NetworkModule::class, ViewModelModule::class])
+@Component(modules = [DataModule::class, DatabaseModule::class, NetworkModule::class, ViewModelModule::class, SharedPreferencesHelperModule::class])
 interface AppComponent {
 
     fun inject(app: App)
@@ -28,6 +29,7 @@ interface AppComponent {
     fun getMainActivityComponentFactory(): MainActivityComponent.Factory
     fun getAlarmServiceComponentFactory(): AlarmServiceComponent.Factory
     fun getEditFragmentComponentFactory(): EditFragmentComponent.Factory
+    fun getLoginFragmentComponentFactory(): LoginFragmentComponent.Factory
 
     fun getNewFragmentComponentFactory(): NewFragmentComponent.Factory
 

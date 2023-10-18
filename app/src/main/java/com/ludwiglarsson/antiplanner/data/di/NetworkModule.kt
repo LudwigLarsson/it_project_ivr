@@ -3,9 +3,12 @@ package com.ludwiglarsson.antiplanner.data.di
 import com.google.gson.GsonBuilder
 import com.ludwiglarsson.antiplanner.AppScope
 import com.ludwiglarsson.antiplanner.data.network.AuthInterceptor
+import com.ludwiglarsson.antiplanner.data.network.NetworkRepository
 import com.ludwiglarsson.antiplanner.data.network.RetrofitService
+import com.ludwiglarsson.antiplanner.utils.SharedPreferencesHelper
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -47,5 +50,11 @@ interface NetworkModule {
                 .build()
             return retrofit.create(RetrofitService::class.java)
         }
+        /*@Provides
+        @Reusable
+        fun provideNetworkRepository(
+            sharedPreferencesHelper: SharedPreferencesHelper,
+            retrofitService: RetrofitService
+        ): NetworkRepository = NetworkRepository(sharedPreferencesHelper, retrofitService)*/
     }
 }

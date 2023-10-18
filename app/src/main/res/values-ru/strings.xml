@@ -4,7 +4,8 @@
     <string name="add">новое</string>
     <string name="events">мероприятия</string>
     <string name="user">я</string>
-
+    <string name="login">Войти</string>
+    <string name="ya_login">Войдите c Яндекс ID</string>
     <string name="save">СОХРАНИТЬ</string>
     <string name="new_todo">Что надо сделать…</string>
     <string name="priority">Важность</string>
@@ -24,9 +25,6 @@
     <string name="no_internet_error">Отсутствует интернет подключение</string>
     <string name="network_error">Что-то пошло не так!</string>
     <string name="retry">Повторить</string>
-    <string name="light_theme">Светлая тема</string>
-    <string name="dark_theme">Темная тема</string>
-    <string name="system_theme">Системная тема</string>
     <string name="notification_low_priority">Важность: Низкая</string>
     <string name="notification_normal_priority">Важность: Обычная</string>
     <string name="notification_high_priority">Важность: Высокая</string>
@@ -39,4 +37,6 @@
     <string name="notification_deadline_postpone_error_title">Не удалось перенести дедлайн</string>
     <string name="notification_deadline_postpone_error_text">Нажмите на уведомление, чтобы попробовать ещё раз</string>
     <string name="notification_deadline_channel_name">Дедлайны задач</string>
+    <string name="hint_log_in">Войдите через Яндекс ID или\nвоспользуйтесь гостевым аккаунтом</string>
+    <string name="welcome">Добро пожаловать!</string>
 </resources>
